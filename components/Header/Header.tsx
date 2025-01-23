@@ -11,7 +11,7 @@ const Header = () => {
     <header className="h-12 md:h-16 text-neutral-500 bg-gray-300 uppercase font-bold flex ">
       <nav className="flex justify-between items-center w-full px-4">
         <div className="hidden md:flex flex-1 gap-4">
-          <Link href="">Homepage</Link>
+          <Link href="/">Homepage</Link>
           <Link href="/clothes">Clothes</Link>
           <Link href="/contact">Contact</Link>
         </div>

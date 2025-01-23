@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import CartLink from "./CartLink";
@@ -18,6 +18,19 @@ const BurgerMenu = () => {
   const switchMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"; // блокируем прокрутку
+    } else {
+      document.body.style.overflow = "auto"; // восстанавливаем прокрутку
+    }
+
+    // Очистка при размонтировании
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   //получение информации о том, залогинен ли пользователь
   const hasUser = false;
@@ -41,7 +54,7 @@ const BurgerMenu = () => {
         />
       )}
       {isOpen && (
-        <div className="absolute left-0 top-12 flex flex-col justify-center items-center text-center bg-gray-600 text-gray-300 w-full h-[calc(100vh-3rem)] text-3xl gap-8">
+        <div className="absolute z-20 left-0 top-12 flex flex-col justify-center items-center text-center bg-gray-600 text-gray-300 w-full h-[calc(100vh-3rem)] text-3xl gap-8">
           {links.map((item) => (
             <Link key={item.id} href={item.url} onClick={switchMenu}>
               {item.title}
