@@ -60,7 +60,7 @@ const Slider = () => {
           </p>
           <Link
             className="bg-gray-300 text-gray-600 px-6 py-4 rounded-full text-lg transition-all duration-300 ease-in-out transform hover:bg-gray-600 hover:text-gray-300"
-            href="/clothes"
+            href="/sneakers"
           >
             Shop Now
           </Link>

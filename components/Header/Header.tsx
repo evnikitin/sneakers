@@ -12,7 +12,7 @@ const Header = () => {
       <nav className="flex justify-between items-center w-full px-4">
         <div className="hidden md:flex flex-1 gap-4">
           <Link href="/">Homepage</Link>
-          <Link href="/clothes">Clothes</Link>
+          <Link href="/sneakers">Sneakers</Link>
           <Link href="/contact">Contact</Link>
         </div>
         <div className="flex-1 md:text-center text-xl text-neutral-600 font-bold">
