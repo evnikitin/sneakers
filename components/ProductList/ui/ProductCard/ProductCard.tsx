@@ -21,7 +21,7 @@ export default function ProductCard({ product }: CroductCardProps) {
           quality={100}
         />
       </div>
-      <div className="px-6 py-4 bg-slate-50">
+      <div className="px-6 py-4 bg-slate-50 h-[inherit]">
         <div className="font-bold text-xl mb-2">{product.model}</div>
         <div className="mb-2">
           <p className="text-gray-700 text-base">{product.description}</p>
