@@ -7,7 +7,7 @@ import CartLink from "./CartLink";
 
 const links = [
   { id: 1, title: "Homepage", url: "/" },
-  { id: 2, title: "Clothes", url: "/clothes" },
+  { id: 2, title: "Sneakers", url: "/sneakers" },
   { id: 3, title: "Working Hours", url: "/hours" },
   { id: 4, title: "Contact", url: "/contact" },
 ];
@@ -21,12 +21,11 @@ const BurgerMenu = () => {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden"; // блокируем прокрутку
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto"; // восстанавливаем прокрутку
+      document.body.style.overflow = "auto";
     }
 
-    // Очистка при размонтировании
     return () => {
       document.body.style.overflow = "auto";
     };

@@ -11,12 +11,11 @@ export default function ProductCard({ product }: CroductCardProps) {
   };
   return (
     <div className="max-w-full h-[100%] rounded overflow-hidden shadow-lg">
-      <div className="relative" style={{ paddingBottom: "60%" }}>
+      <div className="relative object-cover pb-[60%]">
         <Image
           src={product.image}
           alt={product.model}
-          layout="fill"
-          objectFit="cover"
+          fill
           className="rounded-t-lg"
           quality={100}
         />

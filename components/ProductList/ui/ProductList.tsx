@@ -46,7 +46,7 @@ export default function ProductList() {
               key={page}
               onClick={() => {
                 if (typeof page === "number") {
-                  setCurrentPage(page); // Устанавливаем только число
+                  setCurrentPage(page);
                 }
               }}
               className={`px-4 py-2 rounded-full text-white ${
