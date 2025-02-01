@@ -10,7 +10,7 @@ export const sneakers: Sneaker[] = [
       "The Air Jordan 1 Retro High OG delivers heritage style with premium materials and responsive cushioning.",
     image: "/temp/jordan.jpg",
     sizes: ["US 7", "US 8", "US 9", "US 10", "US 11"],
-    color: "Black/White-Gym Red",
+    color: "Black / White-Gym Red",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const sneakers: Sneaker[] = [
       "The Yeezy Boost 350 V2 continues the tradition of iconic, stylish footwear from Kanye West's collaboration with Adidas.",
     image: "/temp/yeezy.jpg",
     sizes: ["US 6", "US 7", "US 8", "US 9", "US 10", "US 11"],
-    color: "Core Black/Red",
+    color: "Core Black / Red",
   },
   {
     id: 3,
@@ -43,7 +43,7 @@ export const sneakers: Sneaker[] = [
       "The Nike Air Max 90 is a classic sneaker known for its comfort and iconic design.",
     image: "/temp/air-max.jpg",
     sizes: ["US 6", "US 7", "US 8", "US 9", "US 10"],
-    color: "White/Black/Cool Grey",
+    color: "White / Black / Cool Grey",
   },
   {
     id: 6,
@@ -54,7 +54,7 @@ export const sneakers: Sneaker[] = [
       "The New Balance 574 is a timeless classic that combines comfort and style effortlessly.",
     image: "/temp/new-balance.jpg",
     sizes: ["US 6", "US 7", "US 8", "US 9", "US 10"],
-    color: "Navy Blue/Gray",
+    color: "Navy Blue / Gray",
   },
   {
     id: 7,
@@ -65,7 +65,7 @@ export const sneakers: Sneaker[] = [
       "A bold collaboration between Versace and 2 Chainz, combining luxury with street style.",
     image: "/temp/versace-x-2-chainz.jpg",
     sizes: ["US 8", "US 9", "US 10", "US 11", "US 12"],
-    color: "Gold/Black",
+    color: "Gold / Black",
   },
   {
     id: 8,
@@ -76,7 +76,7 @@ export const sneakers: Sneaker[] = [
       "The Osiris D3 is a throwback to the late 90s with its chunky design and skate culture roots.",
     image: "/temp/osiris-d3.jpg",
     sizes: ["US 7", "US 8", "US 9", "US 10", "US 11"],
-    color: "White/Red/Black",
+    color: "White / Red / Black",
   },
   {
     id: 9,
@@ -87,7 +87,7 @@ export const sneakers: Sneaker[] = [
       "The Nike Air More Uptempo is a classic that combines bold style with high-performance cushioning.",
     image: "/temp/air-more-uptempo.jpg",
     sizes: ["US 8", "US 9", "US 10", "US 11", "US 12"],
-    color: "Black/White/University Red",
+    color: "Black / White /University Red",
   },
   {
     id: 10,
@@ -98,7 +98,7 @@ export const sneakers: Sneaker[] = [
       "The collaboration between Raf Simons and Adidas brings futuristic design and premium materials.",
     image: "/temp/raf-simons.jpg",
     sizes: ["US 6", "US 7", "US 8", "US 9", "US 10"],
-    color: "Core Black/White",
+    color: "Core Black / White",
   },
   {
     id: 11,
@@ -109,7 +109,7 @@ export const sneakers: Sneaker[] = [
       "The Balenciaga Triple S features a high-fashion take on the chunky sneaker trend, with a luxurious twist.",
     image: "/temp/balencuaga-triple-s.jpg",
     sizes: ["US 8", "US 9", "US 10", "US 11", "US 12"],
-    color: "White/Red/Black",
+    color: "White / Red / Black",
   },
   {
     id: 12,
@@ -120,7 +120,7 @@ export const sneakers: Sneaker[] = [
       "The Air Max 95 is an iconic silhouette, known for its visible Air cushioning and sleek, sporty design.",
     image: "/temp/air-max-95.jpg",
     sizes: ["US 7", "US 8", "US 9", "US 10", "US 11"],
-    color: "Anthracite/Black/White",
+    color: "Anthracite / Black / White",
   },
   {
     id: 13,
@@ -131,7 +131,7 @@ export const sneakers: Sneaker[] = [
       "The Yeezy 700 Wave Runner combines cutting-edge technology with bold color-blocking and premium comfort.",
     image: "/temp/yeezy-700-waverunner.jpg",
     sizes: ["US 7", "US 8", "US 9", "US 10", "US 11"],
-    color: "Chalk White/Flax/Utility Black",
+    color: "Chalk White / Flax / Utility Black",
   },
 ];
 

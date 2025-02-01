@@ -1,6 +1,11 @@
 import { orders } from "@/components/Order/lib/mock";
 import { MobileOrderCard, OrderTable } from "@/components/Order/ui";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Orders",
+};
 
 const OrdersPage = () => {
   return (

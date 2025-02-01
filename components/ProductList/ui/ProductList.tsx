@@ -3,7 +3,7 @@
 import { useState } from "react";
 import sneakers from "../lib/mock";
 import { ProductCard } from "./ProductCard";
-import { generatePageNumbers } from "@/app/utils";
+import { generatePageNumbers } from "../lib/generatePaginationNumbers";
 
 const PRODUCTS_PER_PAGE = 9;
 
@@ -46,6 +46,7 @@ export default function ProductList() {
               key={page}
               onClick={() => {
                 if (typeof page === "number") {
+                  window.scrollTo(0, 0);
                   setCurrentPage(page);
                 }
               }}
