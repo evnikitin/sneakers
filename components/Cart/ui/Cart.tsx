@@ -3,8 +3,6 @@ import { cart } from "../lib/mockup";
 import { CheckoutCard, FullScreenCart, MobileCart } from "@/components/Cart";
 import Image from "next/image";
 
-// Моковые данные корзины
-
 export const Cart = () => {
   const totalPrice = cart.reduce(
     (total, item) => total + item.product.price * item.quantity,

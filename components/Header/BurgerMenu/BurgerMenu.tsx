@@ -8,8 +8,7 @@ import CartLink from "./CartLink";
 const links = [
   { id: 1, title: "Homepage", url: "/" },
   { id: 2, title: "Sneakers", url: "/sneakers" },
-  { id: 3, title: "Working Hours", url: "/hours" },
-  { id: 4, title: "Contact", url: "/contact" },
+  { id: 3, title: "Contact", url: "/contact" },
 ];
 
 const BurgerMenu = () => {
