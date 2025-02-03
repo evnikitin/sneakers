@@ -2,9 +2,17 @@
 import { cart } from "../lib/mockup";
 import { CheckoutCard, FullScreenCart, MobileCart } from "@/components/Cart";
 import Image from "next/image";
+import { CartActions, useCart } from "@/app/_lib/store";
 
 export const Cart = () => {
-  const totalPrice = cart.reduce(
+  const { state, dispatch } = useCart();
+  console.log(state);
+
+  const deleteItem = (id: number) => {
+    dispatch({ type: CartActions.remove, payload: { id } });
+  };
+
+  const totalPrice = state.items.reduce(
     (total, item) => total + item.product.price * item.quantity,
     0
   );
@@ -20,7 +28,7 @@ export const Cart = () => {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-6 gap-8">
           <div className="xl:col-span-4 lg:col-span-3 space-y-6">
-            {cart.map((item) => (
+            {state.items.map((item) => (
               <div
                 key={item.product.id}
                 className="relative md:flex flex-col md:flex-row items-center bg-white shadow-lg rounded-xl p-6 hover:shadow-2xl"
@@ -31,7 +39,7 @@ export const Cart = () => {
                     alt="delete"
                     width={25}
                     height={25}
-                    onClick={() => {}}
+                    onClick={() => deleteItem(item.product.id)}
                   />
                 </div>
                 <FullScreenCart item={item} />
@@ -41,7 +49,7 @@ export const Cart = () => {
           </div>
 
           <CheckoutCard
-            countOfItems={cart.reduce(
+            countOfItems={state.items.reduce(
               (total, item) => total + item.quantity,
               0
             )}

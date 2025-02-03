@@ -1,13 +1,18 @@
 "use client";
 import Image from "next/image";
 import { Sneaker } from "../../lib/types";
+import { CartActions, useCart } from "@/app/_lib/store";
 
 interface CroductCardProps {
   product: Sneaker;
 }
 export default function ProductCard({ product }: CroductCardProps) {
+  const { dispatch } = useCart();
   const addToCart = () => {
-    ///
+    dispatch({
+      type: CartActions.addToCart,
+      payload: { sneaker: product, size: product.sizes[0], quantity: 1 },
+    });
   };
   return (
     <div className="max-w-full h-[100%] rounded overflow-hidden shadow-lg">

@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import styles from "./Header.module.css";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
