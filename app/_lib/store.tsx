@@ -23,40 +23,34 @@ export interface CartState {
 export enum CartActions {
   addToCart = "ADD_TO_CART",
   remove = "REMOVE_FROM_CART",
-  increase = "INCREASE_QUANTITY",
-  decrease = "DECREASE_QUANTITY",
+  updateQuantity = "UPDATE_QUANTITY",
   changeSize = "CHANGE_SIZE",
 }
 
 type CartAction =
   | {
       type: CartActions.addToCart;
-      payload: { sneaker: Sneaker; size: string; quantity: number };
+      payload: { product: Sneaker; size: string; quantity: number };
     }
   | { type: CartActions.remove; payload: { id: number } }
-  | { type: CartActions.increase; payload: { id: number } }
-  | { type: CartActions.decrease; payload: { id: number } }
-  | { type: CartActions.changeSize; payload: { id: number; size: string } };
+  | {
+      type: CartActions.updateQuantity;
+      payload: { id: number; size: string; quantityChange: number };
+    }
+  | {
+      type: CartActions.changeSize;
+      payload: { id: number; size: string };
+    };
 
 const initialState: CartState = {
   items: [],
-};
-
-const loadState = (): CartState => {
-  if (typeof window !== "undefined" && window.localStorage) {
-    const savedState = localStorage.getItem("cartState");
-    if (savedState) {
-      return JSON.parse(savedState);
-    }
-  }
-  return initialState;
 };
 
 const CartContext = createContext<{
   state: CartState;
   dispatch: React.Dispatch<CartAction>;
 }>({
-  state: loadState(),
+  state: initialState,
   dispatch: () => null,
 });
 
@@ -74,7 +68,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
         dispatch({
           type: CartActions.addToCart,
           payload: {
-            sneaker: item.product,
+            product: item.product,
             size: item.size,
             quantity: item.quantity,
           },
@@ -109,20 +103,28 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case CartActions.addToCart:
       const existingItemIndex = state.items.findIndex(
-        (item) =>
-          item.product.id === action.payload.sneaker.id &&
-          item.size === action.payload.size
+        (item) => item.product.id === action.payload.product.id
       );
+
+      // Если товар уже в корзине, увеличиваем его количество
       if (existingItemIndex !== -1) {
-        const updatedItems = [...state.items];
-        updatedItems[existingItemIndex].quantity += action.payload.quantity;
+        const updatedItems = state.items.map((item, index) =>
+          index === existingItemIndex
+            ? {
+                ...item,
+                quantity: item.quantity + action.payload.quantity, // Увеличиваем количество
+                size: action.payload.size,
+              }
+            : item
+        );
         return { items: updatedItems };
       } else {
+        // Если товар не в корзине, добавляем его
         return {
           items: [
             ...state.items,
             {
-              product: action.payload.sneaker,
+              product: action.payload.product,
               quantity: action.payload.quantity,
               size: action.payload.size,
             },
@@ -133,24 +135,20 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
     case CartActions.remove:
       return {
         items: state.items.filter(
-          (item) => item.product.id !== action.payload.id
+          (item) => !(item.product.id === action.payload.id)
         ),
       };
 
-    case CartActions.increase:
+    case CartActions.updateQuantity:
+      // Унифицированная логика для увеличения и уменьшения
       return {
         items: state.items.map((item) =>
-          item.product.id === action.payload.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        ),
-      };
-
-    case CartActions.decrease:
-      return {
-        items: state.items.map((item) =>
-          item.product.id === action.payload.id && item.quantity > 1
-            ? { ...item, quantity: item.quantity - 1 }
+          item.product.id === action.payload.id &&
+          item.size === action.payload.size
+            ? {
+                ...item,
+                quantity: item.quantity + action.payload.quantityChange,
+              }
             : item
         ),
       };

@@ -1,12 +1,10 @@
 "use client";
-import { cart } from "../lib/mockup";
 import { CheckoutCard, FullScreenCart, MobileCart } from "@/components/Cart";
 import Image from "next/image";
 import { CartActions, useCart } from "@/app/_lib/store";
 
 export const Cart = () => {
   const { state, dispatch } = useCart();
-  console.log(state);
 
   const deleteItem = (id: number) => {
     dispatch({ type: CartActions.remove, payload: { id } });
@@ -23,7 +21,7 @@ export const Cart = () => {
         Your Shopping Cart
       </h1>
 
-      {cart.length === 0 ? (
+      {state.items.length === 0 ? (
         <p className="text-center text-xl text-gray-500">Your cart is empty</p>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-6 gap-8">

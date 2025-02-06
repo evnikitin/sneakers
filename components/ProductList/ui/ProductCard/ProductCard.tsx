@@ -1,21 +1,28 @@
 "use client";
 import Image from "next/image";
+import { MouseEvent } from "react";
 import { Sneaker } from "../../lib/types";
 import { CartActions, useCart } from "@/app/_lib/store";
+import Link from "next/link";
 
 interface CroductCardProps {
   product: Sneaker;
 }
 export default function ProductCard({ product }: CroductCardProps) {
   const { dispatch } = useCart();
-  const addToCart = () => {
+
+  const addToCart = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     dispatch({
       type: CartActions.addToCart,
-      payload: { sneaker: product, size: product.sizes[0], quantity: 1 },
+      payload: { product, size: product.sizes[0], quantity: 1 },
     });
   };
   return (
-    <div className="max-w-full h-[100%] rounded overflow-hidden shadow-lg">
+    <Link
+      href={`/sneakers/${product.id}`}
+      className="max-w-full block h-[100%] rounded overflow-hidden shadow-lg"
+    >
       <div className="relative object-cover pb-[60%]">
         <Image
           src={product.image}
@@ -32,7 +39,7 @@ export default function ProductCard({ product }: CroductCardProps) {
           <div className="flex items-center justify-between mt-4">
             <span className="font-bold text-xl">${product.price}</span>
             <button
-              onClick={addToCart}
+              onClick={(e) => addToCart(e)}
               className="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded"
             >
               Add to Cart
@@ -60,6 +67,6 @@ export default function ProductCard({ product }: CroductCardProps) {
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

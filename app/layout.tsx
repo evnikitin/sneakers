@@ -21,9 +21,6 @@ export const metadata: Metadata = {
     template: "AXOLOTL | %s",
   },
   description: "Sneakers web shop",
-  icons: {
-    icon: "/logo.jpg",
-  },
 };
 
 export default function RootLayout({

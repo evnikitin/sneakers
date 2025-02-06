@@ -14,11 +14,17 @@ export const FullScreenCart = ({ item }: FullScreenCartProps) => {
   const { dispatch } = useCart();
 
   const onDecrease = () => {
-    dispatch({ type: CartActions.decrease, payload: { id: item.product.id } });
+    dispatch({
+      type: CartActions.updateQuantity,
+      payload: { id: item.product.id, size: item.size, quantityChange: -1 },
+    });
   };
 
   const onIncrease = () => {
-    dispatch({ type: CartActions.increase, payload: { id: item.product.id } });
+    dispatch({
+      type: CartActions.updateQuantity,
+      payload: { id: item.product.id, size: item.size, quantityChange: 1 },
+    });
   };
 
   const changeSize = (size: string) => {
