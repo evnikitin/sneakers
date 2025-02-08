@@ -1,6 +1,5 @@
 "use client";
 
-import { Sneaker } from "@/components/ProductList";
 import React, {
   createContext,
   useContext,
@@ -9,22 +8,10 @@ import React, {
   useEffect,
   useState,
 } from "react";
-
-export interface ICartProduct {
-  product: Sneaker;
-  quantity: number;
-  size: string;
-}
+import { ICartProduct, CartActions, Sneaker } from "./types";
 
 export interface CartState {
   items: ICartProduct[];
-}
-
-export enum CartActions {
-  addToCart = "ADD_TO_CART",
-  remove = "REMOVE_FROM_CART",
-  updateQuantity = "UPDATE_QUANTITY",
-  changeSize = "CHANGE_SIZE",
 }
 
 type CartAction =
@@ -35,7 +22,7 @@ type CartAction =
   | { type: CartActions.remove; payload: { id: number } }
   | {
       type: CartActions.updateQuantity;
-      payload: { id: number; size: string; quantityChange: number };
+      payload: { id: number; quantityChange: number };
     }
   | {
       type: CartActions.changeSize;
@@ -143,8 +130,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       // Унифицированная логика для увеличения и уменьшения
       return {
         items: state.items.map((item) =>
-          item.product.id === action.payload.id &&
-          item.size === action.payload.size
+          item.product.id === action.payload.id
             ? {
                 ...item,
                 quantity: item.quantity + action.payload.quantityChange,

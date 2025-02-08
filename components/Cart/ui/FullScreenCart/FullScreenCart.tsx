@@ -2,37 +2,16 @@
 import Image from "next/image";
 
 import React from "react";
-import { CartItem } from "../../lib/types";
 import { ChangeQuantity } from "../ChangeQuantity/ChangeQuantity";
-import { CartActions, useCart } from "@/app/_lib/store";
+import { ICartProduct } from "@/app/_lib/types";
+import { useCartActions } from "@/app/_lib/_hooks";
 
 interface FullScreenCartProps {
-  item: CartItem;
+  item: ICartProduct;
 }
 
 export const FullScreenCart = ({ item }: FullScreenCartProps) => {
-  const { dispatch } = useCart();
-
-  const onDecrease = () => {
-    dispatch({
-      type: CartActions.updateQuantity,
-      payload: { id: item.product.id, size: item.size, quantityChange: -1 },
-    });
-  };
-
-  const onIncrease = () => {
-    dispatch({
-      type: CartActions.updateQuantity,
-      payload: { id: item.product.id, size: item.size, quantityChange: 1 },
-    });
-  };
-
-  const changeSize = (size: string) => {
-    dispatch({
-      type: CartActions.changeSize,
-      payload: { id: item.product.id, size },
-    });
-  };
+  const { onDecrease, onIncrease, changeSize } = useCartActions();
 
   return (
     <div className="hidden md:grid grid-cols-[minmax(240px,_1fr)_3fr_2fr_1fr] gap-4 w-full items-center">
@@ -58,7 +37,7 @@ export const FullScreenCart = ({ item }: FullScreenCartProps) => {
           <select
             id="size-select"
             value={item.size}
-            onChange={(e) => changeSize(e.target.value)}
+            onChange={(e) => changeSize(item.product.id, e.target.value)}
             className="mt-2 bg-gray-200 p-2 lg:p-3 rounded-md text-sm sm:text-base"
           >
             {item.product.sizes.map((size) => (
@@ -72,8 +51,8 @@ export const FullScreenCart = ({ item }: FullScreenCartProps) => {
 
       <ChangeQuantity
         quantity={item.quantity}
-        onDecrease={onDecrease}
-        onIncrease={onIncrease}
+        onDecrease={() => onDecrease(item.product.id)}
+        onIncrease={() => onIncrease(item.product.id)}
       />
 
       <div className="text-right mt-4 sm:mt-0">

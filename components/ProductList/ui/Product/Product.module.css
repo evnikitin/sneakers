@@ -1,0 +1,34 @@
+.grid_template {
+  grid-template-areas:
+    "image"
+    "description"
+    "actions";
+}
+
+@media (min-width: 1275px) {
+  .grid_template {
+    grid-template-areas:
+      "image image description"
+      "image image description"
+      "image image actions";
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1275px) {
+  .grid_template {
+    grid-template-areas:
+      "image image description"
+      "image image description"
+      "actions actions actions";
+  }
+}
+
+.grid_description {
+  grid-area: description;
+}
+.grid_image {
+  grid-area: image;
+}
+.grid_actions {
+  grid-area: actions;
+}

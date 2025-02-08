@@ -2,37 +2,16 @@
 import Image from "next/image";
 
 import React from "react";
-import { CartItem } from "../../lib/types";
 import { ChangeQuantity } from "../ChangeQuantity/ChangeQuantity";
-import { useCart, CartActions } from "@/app/_lib/store";
+import { ICartProduct } from "@/app/_lib/types";
+import { useCartActions } from "@/app/_lib/_hooks";
 
 interface MobileCartProps {
-  item: CartItem;
+  item: ICartProduct;
 }
 
 export const MobileCart = ({ item }: MobileCartProps) => {
-  const { dispatch } = useCart();
-
-  const onDecrease = () => {
-    dispatch({
-      type: CartActions.updateQuantity,
-      payload: { id: item.product.id, size: item.size, quantityChange: -1 },
-    });
-  };
-
-  const onIncrease = () => {
-    dispatch({
-      type: CartActions.updateQuantity,
-      payload: { id: item.product.id, size: item.size, quantityChange: 1 },
-    });
-  };
-
-  const changeSize = (size: string) => {
-    dispatch({
-      type: CartActions.changeSize,
-      payload: { id: item.product.id, size },
-    });
-  };
+  const { onDecrease, onIncrease, changeSize } = useCartActions();
 
   return (
     <div className="md:hidden mb-2 w-full rounded-md bg-white p-4">
@@ -72,7 +51,7 @@ export const MobileCart = ({ item }: MobileCartProps) => {
           <select
             id="size-select"
             value={item.size}
-            onChange={(e) => changeSize(e.target.value)}
+            onChange={(e) => changeSize(item.product.id, e.target.value)}
             className="mt-2 bg-gray-200 p-2 lg:p-3 rounded-md text-base w-fit"
           >
             {item.product.sizes.map((size) => (
@@ -92,8 +71,8 @@ export const MobileCart = ({ item }: MobileCartProps) => {
 
       <ChangeQuantity
         quantity={item.quantity}
-        onDecrease={onDecrease}
-        onIncrease={onIncrease}
+        onDecrease={() => onDecrease(item.product.id)}
+        onIncrease={() => onIncrease(item.product.id)}
       />
     </div>
   );

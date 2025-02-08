@@ -1,15 +1,12 @@
 "use client";
 import { CheckoutCard, FullScreenCart, MobileCart } from "@/components/Cart";
 import Image from "next/image";
-import { CartActions, useCart } from "@/app/_lib/store";
+import { useCartActions } from "@/app/_lib/_hooks";
+import { useCart } from "@/app/_lib/store";
 
 export const Cart = () => {
-  const { state, dispatch } = useCart();
-
-  const deleteItem = (id: number) => {
-    dispatch({ type: CartActions.remove, payload: { id } });
-  };
-
+  const { state } = useCart();
+  const { deleteItem } = useCartActions();
   const totalPrice = state.items.reduce(
     (total, item) => total + item.product.price * item.quantity,
     0

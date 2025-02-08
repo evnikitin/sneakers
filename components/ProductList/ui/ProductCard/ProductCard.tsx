@@ -1,22 +1,21 @@
 "use client";
 import Image from "next/image";
 import { MouseEvent } from "react";
-import { Sneaker } from "../../lib/types";
-import { CartActions, useCart } from "@/app/_lib/store";
 import Link from "next/link";
+import { Sneaker } from "@/app/_lib/types";
+import { useCartActions } from "@/app/_lib/_hooks";
+import { toast } from "react-toastify";
 
 interface CroductCardProps {
   product: Sneaker;
 }
 export default function ProductCard({ product }: CroductCardProps) {
-  const { dispatch } = useCart();
+  const { onAddToCart } = useCartActions();
 
   const addToCart = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch({
-      type: CartActions.addToCart,
-      payload: { product, size: product.sizes[0], quantity: 1 },
-    });
+    onAddToCart(product, product.sizes[0], 1);
+    toast.success("Product has been added to your cart!");
   };
   return (
     <Link
