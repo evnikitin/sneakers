@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import CartLink from "./CartLink";
+import { UserLinks } from "../UserLinks/UserLinks";
 
 const links = [
   { id: 1, title: "Homepage", url: "/" },
@@ -30,8 +31,6 @@ const BurgerMenu = () => {
     };
   }, [isOpen]);
 
-  //получение информации о том, залогинен ли пользователь
-  const hasUser = false;
   return (
     <div className="md:hidden">
       {isOpen ? (
@@ -58,15 +57,7 @@ const BurgerMenu = () => {
               {item.title}
             </Link>
           ))}
-          {hasUser ? (
-            <Link href="/orders" onClick={switchMenu}>
-              Orders
-            </Link>
-          ) : (
-            <Link href="/login" onClick={switchMenu}>
-              Login
-            </Link>
-          )}
+          <UserLinks />
           <div onClick={switchMenu}>
             <CartLink />
           </div>

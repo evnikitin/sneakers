@@ -1,12 +1,18 @@
-import { Metadata } from "next";
+"use client";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Log in",
-};
+import { useSession, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Login() {
-  //реализация авторизации через next-auth
+  const { status } = useSession();
+  const router = useRouter();
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/");
+    }
+  }, [status, router]);
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-700">
       <div className="bg-gray-800 p-12 rounded-xl shadow-lg w-80 md:w-96">
@@ -14,7 +20,10 @@ export default function Login() {
           Log in to your account
         </h2>
 
-        <button className="w-full flex items-center justify-center py-3 px-4 bg-gray-600 text-white rounded-full mb-4 hover:bg-gray-500 focus:outline-none transition">
+        <button
+          onClick={() => signIn("google")}
+          className="w-full flex items-center justify-center py-3 px-4 bg-gray-600 text-white rounded-full mb-4 hover:bg-gray-500 focus:outline-none transition"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -31,7 +40,10 @@ export default function Login() {
           Log in with Google
         </button>
 
-        <button className="w-full flex items-center justify-center py-3 px-4 bg-gray-600 text-white rounded-full mb-4 hover:bg-gray-500 focus:outline-none transition">
+        <button
+          onClick={() => signIn("github")}
+          className="w-full flex items-center justify-center py-3 px-4 bg-gray-600 text-white rounded-full mb-4 hover:bg-gray-500 focus:outline-none transition"
+        >
           <svg
             className="mr-1"
             xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import sneakers from "../lib/mock";
 import { ProductCard } from "./ProductCard";
 import { generatePageNumbers } from "../lib/generatePaginationNumbers";
 import { ToastContainer } from "react-toastify";
