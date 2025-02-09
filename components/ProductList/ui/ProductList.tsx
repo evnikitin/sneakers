@@ -5,10 +5,15 @@ import sneakers from "../lib/mock";
 import { ProductCard } from "./ProductCard";
 import { generatePageNumbers } from "../lib/generatePaginationNumbers";
 import { ToastContainer } from "react-toastify";
+import { Sneaker } from "@/app/_lib/types";
 
 const PRODUCTS_PER_PAGE = 9;
 
-export default function ProductList() {
+interface ProductListProps {
+  sneakers: Sneaker[];
+}
+
+export default function ProductList({ sneakers }: ProductListProps) {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -18,12 +23,10 @@ export default function ProductList() {
     }
   }, []);
 
-  // Сохраняем текущую страницу в localStorage при её изменении
   useEffect(() => {
     if (currentPage !== 1) {
       localStorage.setItem("currentPage", JSON.stringify(currentPage));
     } else {
-      // Если страница - первая, очищаем запись в localStorage
       localStorage.removeItem("currentPage");
     }
   }, [currentPage]);
