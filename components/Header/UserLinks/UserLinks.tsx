@@ -15,12 +15,12 @@ export const UserLinks = () => {
             onClick={() => signOut()}
             aria-label="Sign out from your account"
           >
-            LOGOUT
+            LOG OUT
           </button>
         </div>
       ) : (
         <Link href="/login" aria-label="Log in to your account">
-          Log In
+          LOG In
         </Link>
       )}
     </>

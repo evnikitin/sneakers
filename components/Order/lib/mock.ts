@@ -1,4 +1,4 @@
-import { Order, OrderStatus } from "./types";
+/* import { Order, OrderStatus } from "./types";
 
 export const orders: Order[] = [
   {
@@ -26,3 +26,4 @@ export const orders: Order[] = [
     totalAmount: "$50.00",
   },
 ];
+ */

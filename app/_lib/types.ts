@@ -21,3 +21,19 @@ export interface ICartProduct {
   quantity: number;
   size: string;
 }
+
+export enum OrderStatus {
+  Completed = "Completed",
+  Pending = "Pending",
+  Shipped = "Shipped",
+  Canceled = "Canceled",
+}
+
+export type Order = {
+  id: string;
+  createdAt: string;
+  status: OrderStatus;
+  price: number;
+  userEmail: string;
+  products: ICartProduct[];
+};

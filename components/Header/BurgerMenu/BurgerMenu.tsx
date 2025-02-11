@@ -32,7 +32,7 @@ const BurgerMenu = () => {
   }, [isOpen]);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       {isOpen ? (
         <Image
           src="/close.png"
@@ -51,7 +51,7 @@ const BurgerMenu = () => {
         />
       )}
       {isOpen && (
-        <div className="absolute z-20 left-0 top-12 flex flex-col justify-center items-center text-center bg-gray-600 text-gray-300 w-full h-[calc(100vh-3rem)] text-3xl gap-8">
+        <div className="absolute z-20 left-0 top-12 md:top-16 flex flex-col justify-center items-center text-center bg-gray-600 text-gray-300 w-full h-[calc(100vh-3rem)] text-3xl gap-8">
           {links.map((item) => (
             <Link key={item.id} href={item.url} onClick={switchMenu}>
               {item.title}

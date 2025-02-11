@@ -1,4 +1,4 @@
-import { OrderStatus } from "./types";
+import { OrderStatus } from "@/app/_lib/types";
 
 export const statusColors: Record<OrderStatus, string> = {
   [OrderStatus.Completed]: "text-green-500",
@@ -7,7 +7,6 @@ export const statusColors: Record<OrderStatus, string> = {
   [OrderStatus.Canceled]: "text-red-500",
 };
 
-// Функция для получения цвета по статусу
 export const getStatusColor = (status: OrderStatus): string => {
-  return statusColors[status] || "text-gray-500"; // по умолчанию серый
+  return statusColors[status] || "text-gray-500";
 };
