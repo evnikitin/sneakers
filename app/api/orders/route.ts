@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/app/_lib/utils/auth";
 import { prisma } from "../../_lib/utils/connect";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async () => {
   const session = await getAuthSession();
@@ -30,4 +30,30 @@ export const GET = async () => {
       { status: 401 }
     );
   }
+};
+
+export const POST = async (req: NextRequest) => {
+  const session = await getAuthSession();
+  if (session) {
+    const body = await req.json();
+    try {
+      await prisma.order.create({
+        data: { ...body, userEmail: session.user.email },
+      });
+      return new NextResponse(
+        JSON.stringify({ message: "Order has been added" }),
+        { status: 201 }
+      );
+    } catch (err) {
+      console.log(err);
+      return new NextResponse(
+        JSON.stringify({ message: "Error has been occurred" }),
+        { status: 500 }
+      );
+    }
+  }
+  return new NextResponse(
+    JSON.stringify({ message: "Error has been occurred" }),
+    { status: 500 }
+  );
 };

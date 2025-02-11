@@ -14,6 +14,7 @@ export enum CartActions {
   remove = "REMOVE_FROM_CART",
   updateQuantity = "UPDATE_QUANTITY",
   changeSize = "CHANGE_SIZE",
+  deleteAll = "DELETE_ALL",
 }
 
 export interface ICartProduct {

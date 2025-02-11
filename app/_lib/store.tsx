@@ -20,6 +20,7 @@ type CartAction =
       payload: { product: Sneaker; size: string; quantity: number };
     }
   | { type: CartActions.remove; payload: { id: number } }
+  | { type: CartActions.deleteAll }
   | {
       type: CartActions.updateQuantity;
       payload: { id: number; quantityChange: number };
@@ -28,7 +29,6 @@ type CartAction =
       type: CartActions.changeSize;
       payload: { id: number; size: string };
     };
-
 const initialState: CartState = {
   items: [],
 };
@@ -147,6 +147,9 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
             : item
         ),
       };
+
+    case CartActions.deleteAll:
+      return initialState;
 
     default:
       return state;

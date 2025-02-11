@@ -78,6 +78,7 @@ const OrdersPage = () => {
       (error instanceof Error ? error.message : "Unknown error")
     );
   }
+  console.log(data);
 
   return (
     <div className="min-h-screen py-12 px-6">

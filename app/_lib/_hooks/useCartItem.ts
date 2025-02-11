@@ -36,5 +36,16 @@ export const useCartActions = () => {
     dispatch({ type: CartActions.remove, payload: { id } });
   };
 
-  return { onDecrease, onIncrease, changeSize, deleteItem, onAddToCart };
+  const deleteAll = () => {
+    dispatch({ type: CartActions.deleteAll });
+  };
+
+  return {
+    onDecrease,
+    onIncrease,
+    changeSize,
+    deleteItem,
+    onAddToCart,
+    deleteAll,
+  };
 };
